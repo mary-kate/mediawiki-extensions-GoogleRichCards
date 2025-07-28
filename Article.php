@@ -166,7 +166,7 @@ class Article {
 				'dateCreated'			=> $created_timestamp,
 				'datePublished'		=> $created_timestamp,
 				'dateModified'		 => $modified_timestamp,
-				'discussionUrl'		=> $this->server . '/' . $this->title->getTalkPage(),
+				'discussionUrl'		=> $this->title->getTalkPage()->getFullURL(),
 				'image'						=> [
 					'@type'	=> 'ImageObject',
 					'url'		=> $image[0],
