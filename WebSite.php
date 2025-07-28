@@ -17,11 +17,6 @@ namespace MediaWiki\Extension\GoogleRichCards;
 use OutputPage;
 use Title;
 
-if ( !defined( 'MEDIAWIKI' ) ) {
-	echo( "This is a Mediawiki extension and doesn't provide standalone functionality\n" );
-	die( 1 );
-}
-
 class WebSite {
 	/**
 	 * @var static Article instance to use for Singleton pattern

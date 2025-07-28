@@ -18,11 +18,6 @@ use OutputPage;
 use Parser;
 use PPFrame;
 
-if ( !defined( 'MEDIAWIKI' ) ) {
-	echo( "This is a Mediawiki extension and doesn't provide standalone functionality\n" );
-	die( 1 );
-}
-
 class Event {
 	/**
 	 * @var static Event instance for Signleton pattern
