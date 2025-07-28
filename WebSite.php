@@ -50,7 +50,7 @@ class WebSite {
 	 * Class constructor
 	 */
 	public function __construct() {
-		global $wgLogo, $wgServer, $wgSitename, $wgTitle;
+		global $wgServer, $wgTitle;
 
 		$this->title = $wgTitle;
 		$this->server = $wgServer;
