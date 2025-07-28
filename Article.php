@@ -14,6 +14,7 @@
 
 namespace MediaWiki\Extension\GoogleRichCards;
 
+use MediaWiki\MediaWikiServices;
 use OutputPage;
 use Title;
 
@@ -74,10 +75,16 @@ class Article {
 	 * @return int
 	 */
 	public function getCTime() {
-		$ctime = \DateTime::createFromFormat( 'YmdHis', $this->title->getEarliestRevTime() );
-		if ( $ctime ) {
-			return $ctime->format( 'c' );
+		$rev = MediaWikiServices::getInstance()->getRevisionLookup()->getFirstRevision( $this->title );
+		$earliestRevTime = $rev ? $rev->getTimestamp() : null;
+
+		if ( $earliestRevTime ) {
+			$ctime = \DateTime::createFromFormat( 'YmdHis', $earliestRevTime );
+			if ( $ctime ) {
+				return $ctime->format( 'c' );
+			}
 		}
+
 		return 0;
 	}
 
@@ -102,12 +109,15 @@ class Article {
 	 */
 	public function getIllustration( OutputPage &$out ) {
 		$image = key( $out->getFileSearchOptions() );
-		if ( $image && $image_object = wfFindFile( $image ) ) {
-			$image_url = $image_object->getFullURL();
-			$image_width = $image_object->getWidth();
-			$image_height = $image_object->getHeight();
+		if ( $image ) {
+			$image_object = MediaWikiServices::getInstance()->getRepoGroup()->findFile( $image );
+			if ( $image_object ) {
+				$image_url = $image_object->getFullURL();
+				$image_width = $image_object->getWidth();
+				$image_height = $image_object->getHeight();
+			}
 		} else {
-			$image_url = $this->server . $this->logo; // Mediawiki logo to be used by default
+			$image_url = $this->server . $this->logo; // MediaWiki logo to be used by default
 			$image_width = 135; // Default max logo width
 			$image_height = 135; // Default max logo height
 		}
@@ -128,10 +138,13 @@ class Article {
 			$modified_timestamp = $this->getMTime();
 
 			$first_revision = $this->title->getFirstRevision();
+			$author = 'None';
+
 			if ( $first_revision ) {
-				$author = $first_revision->getUserText();
-			} else {
-				$author = 'None';
+				$user = $first_revision->getUserText();
+				if ( $user ) {
+					$author = $user->getName();
+				}
 			}
 
 			$image = $this->getIllustration( $out );
