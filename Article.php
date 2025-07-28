@@ -14,6 +14,7 @@
 
 namespace MediaWiki\Extension\GoogleRichCards;
 
+use MediaWiki\Context\RequestContext;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Title\Title;
@@ -25,7 +26,7 @@ class Article {
 	private static $instance;
 
 	/**
-	 * @var Title current instance of Title received from global $wgTitle
+	 * @var Title current instance of Title received from the RequestContext
 	 */
 	private $title;
 
@@ -61,9 +62,9 @@ class Article {
 	 * Class constructor
 	 */
 	public function __construct() {
-		global $wgLogo, $wgServer, $wgSitename, $wgTitle;
+		global $wgLogo, $wgServer, $wgSitename;
 
-		$this->title = $wgTitle;
+		$this->title = RequestContext::getMain()->getTitle();
 		$this->sitename = $wgSitename;
 		$this->server = $wgServer;
 		$this->logo = $wgLogo;
