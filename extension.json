@@ -13,6 +13,20 @@
 	"requires": {
 		"MediaWiki": ">= 1.43.0"
 	},
+	"config": {
+		"GoogleRichCardsAnnotateArticles": {
+			"description": "Enable annotations for articles (content pages)?",
+			"value": true
+		},
+		"GoogleRichCardsAnnotateEvents": {
+			"description": "Enable annotations for events?",
+			"value": false
+		},
+		"GoogleRichCardsAnnotateWebSite": {
+			"description": "Enable WebSite annotations?",
+			"value": true
+		}
+	},
 	"AutoloadClasses": {
 		"MediaWiki\\Extension\\GoogleRichCards\\Hooks": "Hooks.php",
 		"MediaWiki\\Extension\\GoogleRichCards\\Article": "Article.php",
