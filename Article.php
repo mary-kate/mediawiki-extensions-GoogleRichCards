@@ -105,11 +105,16 @@ class Article {
 	/**
 	 * Return first image and its resolution from the current Article
 	 *
-	 * @param OutputPage OutputPage instance referencce
+	 * @param OutputPage &$out OutputPage instance reference
 	 * @return array
 	 */
 	public function getIllustration( OutputPage &$out ) {
 		$image = key( $out->getFileSearchOptions() );
+
+		$image_url = $this->server . $this->logo; // MediaWiki logo to be used by default
+		$image_width = 135; // Default max logo width
+		$image_height = 135; // Default max logo height
+
 		if ( $image ) {
 			$image_object = MediaWikiServices::getInstance()->getRepoGroup()->findFile( $image );
 			if ( $image_object ) {
@@ -117,10 +122,6 @@ class Article {
 				$image_width = $image_object->getWidth();
 				$image_height = $image_object->getHeight();
 			}
-		} else {
-			$image_url = $this->server . $this->logo; // MediaWiki logo to be used by default
-			$image_width = 135; // Default max logo width
-			$image_height = 135; // Default max logo height
 		}
 
 		return [ $image_url, $image_width, $image_height ];
