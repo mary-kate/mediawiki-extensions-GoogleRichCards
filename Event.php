@@ -109,7 +109,7 @@ class Event {
 	private function getRawURL( $htmlLink ) {
 		$matches = preg_match_all( '/((https?:\\/\\/)([a-z0-9\.\/_-]+))/i', $htmlLink, $extracted );
 
-		if ( isset( $extracted ) && isset( $extracted[0] ) && isset( $extracted[0][0] ) {
+		if ( isset( $extracted ) && isset( $extracted[0] ) && isset( $extracted[0][0] ) ) {
 			return $extracted[0][0];
 		} else {
 			return '';
