@@ -68,20 +68,20 @@ class WebSite {
 	 */
 	function render( OutputPage &$out ) {
 		if ( $this->title instanceof Title && $this->title->isContentPage() ) {
-			$website = array(
+			$website = [
 				'@context'				=> 'http://schema.org',
 				'@type'					 => 'WebSite',
 				'url'						 => $this->server,
-				'potentialAction' => array(
+				'potentialAction' => [
 					'@type'			 => 'SearchAction',
 					'target'			=> $this->server . '/index.php?search={search_term_string}',
 					'query-input' => 'required name=search_term_string',
-				)
-			);
+				]
+			];
 
 			$out->addHeadItem(
 				'GoogleRichCardsWebSite',
-				'<script type="application/ld+json">' . json_encode($website ) . '</script>'
+				'<script type="application/ld+json">' . json_encode( $website ) . '</script>'
 			);
 		}
 	}

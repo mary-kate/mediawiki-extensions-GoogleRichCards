@@ -43,7 +43,7 @@ class Event {
 	}
 
 	public function parse( $text, $params = [], Parser $parser, PPFrame $frame ) {
-		$o = array();
+		$o = [];
 		foreach ( $params as $k => $v ) {
 			$o[$k] = $parser->recursiveTagParse( $v, $frame );
 		}
@@ -55,7 +55,7 @@ class Event {
 			foreach ( $this->getData( $out->mBodytext ) as $event ) {
 				$e = json_decode( $event );
 
-				$event = array(
+				$event = [
 					 '@context'		=> 'http://schema.org',
 					 '@type'			 => 'Event',
 					 'name'				=> $this->getMetadataField( $e, 'name', 'name' ),
@@ -63,37 +63,37 @@ class Event {
 					 'endDate'		 => $this->getMetadataField( $e, 'endDate', 'enddate' ),
 					 'description' => $this->getMetadataField( $e, 'description', 'description' ),
 					 'image'			 => $this->getRawURL( $e->{'image'} ),
-				);
+				];
 
 				if ( $e->{'place'} ) {
-					$event['location'] = array(
+					$event['location'] = [
 						'@type' => 'Place',
 						'name'	=> $e->{'place'},
-						'address' => array(
+						'address' => [
 							'streetAddress'	 => $this->getMetadataField( $e, 'streetAddress', 'streetaddress' ),
 							'addressLocality' => $this->getMetadataField( $e, 'addressLocality', 'locality' ),
 							'postalCode'			=> $this->getMetadataField( $e, 'postalCode', 'postalcode' ),
 							'addressRegion'	 => $this->getMetadataField( $e, 'addressRegion', 'region' ),
 							'addressCountry'	=> $this->getMetadataField( $e, 'addressCountry', 'country' ),
-						),
-					);
+						],
+					];
 				}
 
 				if ( $e->{'performer'} ) {
-					$event['performer'] = array(
+					$event['performer'] = [
 						'@type'	 => 'PerformingGroup',
 						'name'		=> $this->getMetadataField( $e, 'performer', 'performer' ),
-					);
+					];
 
 					if ( $e->{'offer'} ) {
-						$event['offers'] = array(
+						$event['offers'] = [
 							'@type'				 => 'Offer',
 							'url'					 => $this->getRawURL( $e->{'offerurl'} ),
 							'price'				 => $this->getMetadataField( $e, 'offerPrice', 'offerprice' ),
 							'priceCurrency' => $this->getMetadataField( $e, 'offerCurrency', 'offercurrency' ),
 							'availability'	=> $this->getItemAvailability( $e->{'offeravailability'} ),
 							'validFrom'		 => $this->getMetadataField( $e, 'validFrom', 'validfrom' ),
-						);
+						];
 					}
 				}
 

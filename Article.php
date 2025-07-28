@@ -100,7 +100,7 @@ class Article {
 	}
 
 	/**
-	 * Return first image and it' resolution from the current Article
+	 * Return first image and its resolution from the current Article
 	 *
 	 * @param OutputPage OutputPage instance referencce
 	 * @return array
@@ -117,7 +117,7 @@ class Article {
 			$image_height = 135; // Default max logo height
 		}
 
-		return array( $image_url, $image_width, $image_height );
+		return [ $image_url, $image_width, $image_height ];
 	}
 
 	/**
@@ -141,38 +141,38 @@ class Article {
 
 			$image = $this->getIllustration( $out );
 
-			$article = array(
+			$article = [
 				'@context'				 => 'http://schema.org',
 				'@type'						=> 'Article',
-				'mainEntityOfPage' => array(
+				'mainEntityOfPage' => [
 					'@type' => 'WebPage',
 					'@id'	 => $this->title->getFullURL(),
-				),
-				'author'					 => array(
+				],
+				'author'					 => [
 					'@type' => 'Person',
 					'name'	=> $author,
-				),
+				],
 				'headline'				 => $this->title->getText(),
 				'dateCreated'			=> $created_timestamp,
 				'datePublished'		=> $created_timestamp,
 				'dateModified'		 => $modified_timestamp,
 				'discussionUrl'		=> $this->server . '/' . $this->title->getTalkPage(),
-				'image'						=> array(
+				'image'						=> [
 					'@type'	=> 'ImageObject',
 					'url'		=> $image[0],
 					'height' => $image[2],
 					'width'	=> $image[1],
-				),
-				'publisher'				=> array(
+				],
+				'publisher'				=> [
 					'@type' => 'Organization',
 					'name'	=> $this->sitename,
-					'logo'	=> array(
+					'logo'	=> [
 						'@type' => 'ImageObject',
 						'url'	 => $this->server . $this->logo,
-					),
-				),
+					],
+				],
 				'description'			=> $this->title->getText(),
-			);
+			];
 
 			$out->addHeadItem(
 				'GoogleRichCardsArticle',
