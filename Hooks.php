@@ -21,10 +21,11 @@ use Skin;
 class Hooks {
 	/**
 	 * Handle meta elements and page title modification.
+	 *
 	 * @link https://www.mediawiki.org/wiki/Manual:Hooks/BeforePageDisplay
+	 *
 	 * @param OutputPage &$out The output page.
 	 * @param Skin &$skin The current skin.
-	 * @return bool
 	 */
 	public static function onBeforePageDisplay( OutputPage &$out, Skin &$skin ) {
 		global $wgGoogleRichCardsAnnotateArticles, $wgGoogleRichCardsAnnotateEvents, $wgGoogleRichCardsAnnotateWebSite;
@@ -43,8 +44,6 @@ class Hooks {
 			$website = WebSite::getInstance();
 			$website->render( $out );
 		}
-
-		return true;
 	}
 
 	/**
