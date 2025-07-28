@@ -25,7 +25,7 @@ class Event {
 	public static $instance;
 
 	/**
-	 * Singleon pattern getter
+	 * Singleton pattern getter
 	 *
 	 * @return Event
 	 */
