@@ -103,13 +103,17 @@ class Event {
 	private function getData( $pageText ) {
 		$matches = preg_match_all( '/<!-- EventData:(\{(.*)\}) -->/m', $pageText, $extracted );
 
-		return $extracted[1];
+		return isset( $extracted ) && isset( $extracted[1] ) ? $extracted[1] : '';
 	}
 
 	private function getRawURL( $htmlLink ) {
 		$matches = preg_match_all( '/((https?:\\/\\/)([a-z0-9\.\/_-]+))/i', $htmlLink, $extracted );
 
-		return $extracted[0][0];
+		if ( isset( $extracted ) && isset( $extracted[0] ) && isset( $extracted[0][0] ) {
+			return $extracted[0][0];
+		} else {
+			return '';
+		}
 	}
 
 	private function getItemAvailability( $value ) {
