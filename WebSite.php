@@ -19,22 +19,12 @@ use MediaWiki\Title\Title;
 
 class WebSite {
 	/**
-	 * @var static Article instance to use for Singleton pattern
+	 * @var static WebSite instance to use for Singleton pattern
 	 */
 	private static $instance;
 
 	/**
-	 * @var Title current instance of Title received from global $wgTitle
-	 */
-	private $title;
-
-	/**
-	 * @var string Server URL received from global $wgServer
-	 */
-	private $server;
-
-	/**
-	 * Singleon pattern getter
+	 * Singleton pattern getter
 	 *
 	 * @return WebSite
 	 */
@@ -49,12 +39,7 @@ class WebSite {
 	/**
 	 * Class constructor
 	 */
-	public function __construct() {
-		global $wgServer, $wgTitle;
-
-		$this->title = $wgTitle;
-		$this->server = $wgServer;
-	}
+	public function __construct() {}
 
 	/**
 	 * Render head item with metadata for Google Rich Snippet
@@ -62,14 +47,18 @@ class WebSite {
 	 * @param OutputPage OutputPage instance referencce
 	 */
 	function render( OutputPage &$out ) {
-		if ( $this->title instanceof Title && $this->title->isContentPage() ) {
+		$title = $out->getTitle();
+		$server = $out->getConfig()->get( 'Server' );
+		$scriptPath = $out->getConfig()->get( 'ScriptPath' );
+
+		if ( $title instanceof Title && $title->isContentPage() ) {
 			$website = [
 				'@context'				=> 'http://schema.org',
 				'@type'					 => 'WebSite',
-				'url'						 => $this->server,
+				'url'						 => $server,
 				'potentialAction' => [
 					'@type'			 => 'SearchAction',
-					'target'			=> $this->server . '/index.php?search={search_term_string}',
+					'target'			=> $server . $scriptPath . '/index.php?search={search_term_string}',
 					'query-input' => 'required name=search_term_string',
 				]
 			];
