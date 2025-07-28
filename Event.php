@@ -47,7 +47,7 @@ class Event {
 
 	public function render( OutputPage &$out ) {
 		if ( $out->isArticle() ) {
-			foreach ( $this->getData( $out->mBodytext ) as $event ) {
+			foreach ( $this->getData( $out->getHTML() ) as $event ) {
 				$e = json_decode( $event );
 
 				$event = [
