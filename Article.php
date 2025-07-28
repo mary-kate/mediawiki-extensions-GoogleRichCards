@@ -139,11 +139,11 @@ class Article {
 			$created_timestamp = $this->getCTime();
 			$modified_timestamp = $this->getMTime();
 
-			$first_revision = $this->title->getFirstRevision();
+			$first_revision = MediaWikiServices::getInstance()->getRevisionLookup()->getFirstRevision( $this->title );
 			$author = 'None';
 
 			if ( $first_revision ) {
-				$user = $first_revision->getUserText();
+				$user = $first_revision->getUser();
 				if ( $user ) {
 					$author = $user->getName();
 				}
