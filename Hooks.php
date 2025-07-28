@@ -14,8 +14,8 @@
 
 namespace MediaWiki\Extension\GoogleRichCards;
 
-use OutputPage;
-use Parser;
+use MediaWiki\Output\OutputPage;
+use MediaWiki\Parser\Parser;
 use Skin;
 
 class Hooks {

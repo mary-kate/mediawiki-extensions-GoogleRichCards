@@ -1,16 +1,17 @@
 {
 	"name": "GoogleRichCards",
-	"version": "0.1",
+	"version": "0.2",
 	"author": [
-		"Igor Shishkin"
+		"Igor Shishkin",
+		"..."
 	],
-	"url": "https://github.com/teran/mediawiki-GoogleRichCards",
+	"url": "https://mediawiki.org/wiki/Extension:GoogleRichCards",
 	"description": "Google Rich Cards extension",
-	"license-name": "GPL",
+	"license-name": "GPL-2.0-only",
 	"type": "parserhook",
 	"MessagesDirs": {},
 	"requires": {
-		"MediaWiki": ">= 1.29.0"
+		"MediaWiki": ">= 1.43.0"
 	},
 	"AutoloadClasses": {
 		"MediaWiki\\Extension\\GoogleRichCards\\Hooks": "Hooks.php",

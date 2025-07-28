@@ -15,8 +15,8 @@
 namespace MediaWiki\Extension\GoogleRichCards;
 
 use MediaWiki\MediaWikiServices;
-use OutputPage;
-use Title;
+use MediaWiki\Output\OutputPage;
+use MediaWiki\Title\Title;
 
 class Article {
 	/**

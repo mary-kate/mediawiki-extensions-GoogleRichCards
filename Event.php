@@ -14,9 +14,9 @@
 
 namespace MediaWiki\Extension\GoogleRichCards;
 
-use OutputPage;
-use Parser;
-use PPFrame;
+use MediaWiki\Output\OutputPage;
+use MediaWiki\Parser\Parser;
+use MediaWiki\Parser\PPFrame;
 
 class Event {
 	/**
