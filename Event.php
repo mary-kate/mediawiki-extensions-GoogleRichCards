@@ -20,7 +20,7 @@ use PPFrame;
 
 class Event {
 	/**
-	 * @var static Event instance for Signleton pattern
+	 * @var static Event instance for Singleton pattern
 	 */
 	public static $instance;
 
