@@ -15,7 +15,7 @@ Currently it supports the following types:
 
 ### Download code
 ```
-git clone https://github.com/teran/mediawiki-GoogleRichCards.git <mediawiki path>/extensions/GoogleRichCards
+git clone https://github.com/mary-kate/mediawiki-extensions-GoogleRichCards.git <MediaWiki path>/extensions/GoogleRichCards
 ```
 
 ### LocalSettings.php
